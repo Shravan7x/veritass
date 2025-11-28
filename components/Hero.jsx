@@ -12,7 +12,7 @@ export default function Hero() {
   if (!mounted) return <div className="min-h-screen bg-[#F9FCF9]" />;
 
   return (
-    // Changed bg from #F7FFF7 to #F9FCF9 (Whiter Green)
+    // Main Container
     <section className="relative min-h-screen w-full bg-[#F9FCF9] overflow-hidden flex items-center pt-20">
       
       {/* --- BACKGROUND DECORATION --- */}
@@ -24,7 +24,7 @@ export default function Hero() {
         {/* --- LEFT COLUMN: COPY & INPUT --- */}
         <div className="flex flex-col items-start gap-8">
 
-          {/* Headline (Added pt-10) */}
+          {/* Headline */}
           <h1 className="text-5xl lg:text-7xl font-bold text-[#082235] leading-[1.1] tracking-tight pt-10">
             Stop misinformation in{" "}
             <span className="relative inline-block">
@@ -96,22 +96,25 @@ export default function Hero() {
                <div className="flex items-center gap-3">
                  <div className="w-10 h-10 rounded-full bg-[#F7FFF7] flex items-center justify-center text-lg shadow-sm">🛡️</div>
                  <div>
-                   <h4 className="font-bold text-[#082235] text-sm">Case_File_902.mp4</h4>
+                   {/* Updated to .png */}
+                   <h4 className="font-bold text-[#082235] text-sm">Case_File_902.png</h4>
                    <p className="text-xs text-[#082235]/50">Cross-referencing 14 networks...</p>
                  </div>
                </div>
                <div className="h-2 w-2 rounded-full bg-[#6CE975] animate-pulse"></div>
             </div>
 
-            {/* Video Placeholder Area */}
-            <div className="w-full h-48 bg-gradient-to-br from-[#082235] to-[#2a4563] rounded-2xl relative overflow-hidden group">
-               <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white">
-                    ▶
-                  </div>
-               </div>
-               {/* Scanning Line Animation */}
-               <div className="absolute top-0 left-0 w-full h-[2px] bg-[#6CE975] shadow-[0_0_15px_#6CE975] animate-[scan_3s_ease-in-out_infinite]"></div>
+            {/* --- REPLACED VIDEO AREA WITH IMAGE --- */}
+            <div className="w-full h-48 rounded-2xl relative overflow-hidden group bg-black/5">
+               {/* The Image */}
+               <img 
+                 src="/deepfakeimg.png" 
+                 alt="Deepfake Scan Preview" 
+                 className="w-full h-full object-cover"
+               />
+               
+               {/* Scanning Line Animation Overlay */}
+               <div className="absolute top-0 left-0 w-full h-[2px] bg-[#6CE975] shadow-[0_0_15px_#6CE975] animate-[scan_3s_ease-in-out_infinite] z-20"></div>
             </div>
 
             {/* Analysis List */}
@@ -135,7 +138,8 @@ export default function Hero() {
              <div className="w-8 h-8 rounded-full bg-[#FF6392]/10 flex items-center justify-center text-sm">⚠️</div>
              <div>
                 <p className="text-xs font-bold text-[#082235]">Synthetic Media</p>
-                <p className="text-[10px] text-[#082235]/50">Audio Match: 98%</p>
+                {/* Updated text to match image context */}
+                <p className="text-[10px] text-[#082235]/50">Image Match: 98%</p>
              </div>
           </div>
 
