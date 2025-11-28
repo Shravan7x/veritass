@@ -99,7 +99,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2 h-full">
             <NavLink title="1-Click Takedown" isActive={activeLink === "1-Click Takedown"} onClick={() => setActiveLink("1-Click Takedown")} />
             <NavLink title="Influencer Copyright" isActive={activeLink === "Influencer Copyright"} onClick={() => setActiveLink("Influencer Copyright")} />
-            <NavLink title="Accountability & Audit" isActive={activeLink === "Accountability & Audit"} onClick={() => setActiveLink("Accountability & Audit")} />
+            {/* Removed Accountability & Audit link here */}
             <NavLink title="Pricing" isActive={activeLink === "Pricing"} onClick={() => setActiveLink("Pricing")} />
           </div>
 
