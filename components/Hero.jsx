@@ -1,9 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Hero() {
   const [mounted, setMounted] = useState(false);
+
+  // NEW: Controlled Input State
+  const [videoUrl, setVideoUrl] = useState("");
+
+  // NEW: Router for navigation
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -39,7 +46,7 @@ export default function Hero() {
             Shrink the 20-day legal process into seconds. Generate court-ready evidence bundles, detect synthetic media, and automate takedowns instantly.
           </p>
 
-          {/* INPUT ACTION COMPONENT */}
+          {/* INPUT ACTION COMPONENT (MODIFIED) */}
           <div className="w-full max-w-lg mt-4 group">
             <div className="relative flex items-center p-2 bg-white rounded-full shadow-[0_4px_20px_rgba(8,34,53,0.08)] border border-[#082235]/5 transition-all duration-300 hover:shadow-[0_8px_30px_rgba(138,118,252,0.15)] hover:border-[#8A76FC]/30">
               
@@ -53,10 +60,19 @@ export default function Hero() {
                 type="text" 
                 placeholder="Paste URL to scan for manipulated media..." 
                 className="flex-1 px-4 py-3 bg-transparent outline-none text-[#082235] placeholder-[#082235]/40 font-medium"
+                value={videoUrl}
+                onChange={(e) => setVideoUrl(e.target.value)}
               />
 
-              {/* The Button */}
-              <button className="bg-[#082235] text-[#F7FFF7] px-8 py-3 rounded-full font-bold text-sm transition-transform duration-300 hover:scale-105 hover:bg-[#8A76FC] hover:shadow-lg flex items-center gap-2">
+              {/* The Button (UPDATED LINK) */}
+              <button 
+                className="bg-[#082235] text-[#F7FFF7] px-8 py-3 rounded-full font-bold text-sm transition-transform duration-300 hover:scale-105 hover:bg-[#8A76FC] hover:shadow-lg flex items-center gap-2"
+                onClick={() => {
+                  // UPDATED: Redirect to placeholder website (GitHub)
+                  // Change this URL later when the AI avatar website is ready
+                  window.location.href = "https://www.github.com";
+                }}
+              >
                 Start Audit
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
               </button>
@@ -82,21 +98,16 @@ export default function Hero() {
         </div>
 
 
-        {/* --- RIGHT COLUMN: FLOATING UI VISUAL --- */}
+        {/* RIGHT COLUMN — unchanged */}
         <div className="relative h-[600px] w-full flex items-center justify-center perspective-1000">
-          
-          {/* Abstract Back Shapes */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-gradient-to-tr from-[#E2F0FD] to-[#F0E6FE] rounded-[40px] -rotate-6 z-0"></div>
 
-          {/* MAIN GLASS CARD (The "Monitor") */}
           <div className="relative w-[400px] h-[500px] bg-white/60 backdrop-blur-xl border border-white/50 rounded-[32px] shadow-[0_20px_60px_rgba(8,34,53,0.1)] p-6 z-10 flex flex-col gap-6 transform transition-transform hover:scale-[1.02] duration-500">
             
-            {/* Header of Card */}
             <div className="flex items-center justify-between">
                <div className="flex items-center gap-3">
                  <div className="w-10 h-10 rounded-full bg-[#F7FFF7] flex items-center justify-center text-lg shadow-sm">🛡️</div>
                  <div>
-                   {/* Updated to .png */}
                    <h4 className="font-bold text-[#082235] text-sm">Case_File_902.png</h4>
                    <p className="text-xs text-[#082235]/50">Cross-referencing 14 networks...</p>
                  </div>
@@ -104,27 +115,21 @@ export default function Hero() {
                <div className="h-2 w-2 rounded-full bg-[#6CE975] animate-pulse"></div>
             </div>
 
-            {/* --- REPLACED VIDEO AREA WITH IMAGE --- */}
             <div className="w-full h-48 rounded-2xl relative overflow-hidden group bg-black/5">
-               {/* The Image */}
                <img 
                  src="/deepfakeimg.png" 
                  alt="Deepfake Scan Preview" 
                  className="w-full h-full object-cover"
                />
-               
-               {/* Scanning Line Animation Overlay */}
                <div className="absolute top-0 left-0 w-full h-[2px] bg-[#6CE975] shadow-[0_0_15px_#6CE975] animate-[scan_3s_ease-in-out_infinite] z-20"></div>
             </div>
 
-            {/* Analysis List */}
             <div className="space-y-3">
                <AnalysisItem label="Content Fingerprint" status="Synthetic" color="red" percent="99%" />
                <AnalysisItem label="Blockchain Anchor" status="Verified" color="green" percent="100%" />
                <AnalysisItem label="Manipulation Trace" status="High" color="yellow" percent="85%" />
             </div>
 
-            {/* Bottom Action */}
             <div className="mt-auto bg-[#F7FFF7] rounded-xl p-3 flex items-center justify-between border border-[#082235]/5">
                <span className="text-xs font-bold text-[#082235]">Legal Bundle Ready</span>
                <button className="bg-[#FF6392] text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-sm hover:bg-[#ff477e] transition-colors">
@@ -133,17 +138,15 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* FLOATING PILL 1 (Left) */}
+          {/* FLOATING PILLS — unchanged */}
           <div className="absolute top-[20%] left-[-20px] lg:left-0 bg-white p-3 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] flex items-center gap-3 animate-[float_4s_ease-in-out_infinite] z-20 border border-[#F7FFF7]">
              <div className="w-8 h-8 rounded-full bg-[#FF6392]/10 flex items-center justify-center text-sm">⚠️</div>
              <div>
                 <p className="text-xs font-bold text-[#082235]">Synthetic Media</p>
-                {/* Updated text to match image context */}
                 <p className="text-[10px] text-[#082235]/50">Image Match: 98%</p>
              </div>
           </div>
 
-          {/* FLOATING PILL 2 (Right) */}
           <div className="absolute bottom-[25%] right-[-20px] lg:right-[-10px] bg-white p-3 rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.08)] flex items-center gap-3 animate-[float_5s_ease-in-out_infinite_reverse] z-20 border border-[#F7FFF7]">
              <div className="w-8 h-8 rounded-full bg-[#8A76FC]/10 flex items-center justify-center text-sm">⚖️</div>
              <div>
@@ -151,7 +154,6 @@ export default function Hero() {
                 <p className="text-[10px] text-[#082235]/50">Draft Generated</p>
              </div>
           </div>
-
         </div>
       </div>
 
