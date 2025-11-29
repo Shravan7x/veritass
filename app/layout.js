@@ -7,7 +7,7 @@ const sansation = localFont({
 });
 
 export const metadata = {
-  title: "Veritas Sheild",
+  title: "Shanti Space",
   description: "Security • Intelligence • Protection",
 };
 
